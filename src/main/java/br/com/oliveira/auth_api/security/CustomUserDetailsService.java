@@ -2,6 +2,7 @@ package br.com.oliveira.auth_api.security;
 
 import br.com.oliveira.auth_api.user.User;
 import br.com.oliveira.auth_api.user.UserRepository;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
