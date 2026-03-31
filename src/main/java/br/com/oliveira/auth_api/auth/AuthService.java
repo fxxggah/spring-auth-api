@@ -1,8 +1,8 @@
 package br.com.oliveira.auth_api.auth;
 
-import br.com.oliveira.auth_api.dto.AuthResponse;
-import br.com.oliveira.auth_api.dto.LoginRequest;
-import br.com.oliveira.auth_api.dto.RegisterRequest;
+import br.com.oliveira.auth_api.dto.response.AuthResponse;
+import br.com.oliveira.auth_api.dto.request.LoginRequest;
+import br.com.oliveira.auth_api.dto.request.RegisterRequest;
 import br.com.oliveira.auth_api.exception.InvalidCredentialsException;
 import br.com.oliveira.auth_api.security.JwtService;
 import br.com.oliveira.auth_api.user.User;

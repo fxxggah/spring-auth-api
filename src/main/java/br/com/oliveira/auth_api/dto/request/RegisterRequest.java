@@ -1,4 +1,4 @@
-package br.com.oliveira.auth_api.dto;
+package br.com.oliveira.auth_api.dto.request;
 
 import lombok.*;
 
