@@ -6,10 +6,8 @@ services:
     restart: always
 
     environment:
-      MYSQL_ROOT_PASSWORD: ""
+      MYSQL_ROOT_PASSWORD: root
       MYSQL_DATABASE: auth_db
-      MYSQL_USER: authuser
-      MYSQL_PASSWORD: ""
 
     ports:
       - "3306:3306"
@@ -41,7 +39,7 @@ services:
     environment:
       SPRING_DATASOURCE_URL: jdbc:mysql://mysql:3306/auth_db
       SPRING_DATASOURCE_USERNAME: root
-      SPRING_DATASOURCE_PASSWORD: ""
+      SPRING_DATASOURCE_PASSWORD: root
 
     networks:
       - auth-network
