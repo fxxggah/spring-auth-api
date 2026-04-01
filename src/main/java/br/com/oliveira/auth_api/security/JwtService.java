@@ -1,6 +1,5 @@
 package br.com.oliveira.auth_api.security;
 
-import br.com.oliveira.auth_api.user.User;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.security.Keys;
@@ -15,15 +14,17 @@ import java.util.function.Function;
 @Service
 public class JwtService {
 
-    private final String SECRET_KEY = "meuSegredoSuperSeguroParaJwtToken";
+    private final String SECRET_KEY = "meuSegredoSuperSeguroParaJwtTokenQueTemMaisDe32Bytes";
 
-    public String generateToken(User user){
+    private final long jwtExpiration = 1000 * 60 * 15; // 15 minutos
 
+    private final long refreshExpiration = 1000 * 60 * 60 * 24 * 7; // 7 dias
+
+    public String generateToken(UserDetails userDetails) {
         return Jwts.builder()
-                .subject(user.getEmail())
-                .claim("userType", user.getUserType().name())
-                .issuedAt(new Date())
-                .expiration(new Date(System.currentTimeMillis() + 86400000))
+                .setSubject(userDetails.getUsername())
+                .setIssuedAt(new Date())
+                .setExpiration(new Date(System.currentTimeMillis() + jwtExpiration))
                 .signWith(getSignKey())
                 .compact();
     }
@@ -69,6 +70,15 @@ public class JwtService {
 
         return username.equals(userDetails.getUsername())
                 && !isTokenExpired(token);
+    }
+
+    public String generateRefreshToken(UserDetails userDetails) {
+        return Jwts.builder()
+                .setSubject(userDetails.getUsername())
+                .setIssuedAt(new Date())
+                .setExpiration(new Date(System.currentTimeMillis() + refreshExpiration))
+                .signWith(getSignKey())
+                .compact();
     }
 
 }

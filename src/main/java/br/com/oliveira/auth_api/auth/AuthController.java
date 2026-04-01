@@ -1,5 +1,6 @@
 package br.com.oliveira.auth_api.auth;
 
+import br.com.oliveira.auth_api.dto.request.RefreshRequest;
 import br.com.oliveira.auth_api.dto.response.AuthResponse;
 import br.com.oliveira.auth_api.dto.request.LoginRequest;
 import br.com.oliveira.auth_api.dto.request.RegisterRequest;
@@ -31,6 +32,11 @@ public class AuthController {
         AuthResponse response = authService.login(request);
 
         return ResponseEntity.ok(response);
+    }
+
+    @PostMapping("/refresh")
+    public AuthResponse refreshToken(@RequestBody RefreshRequest request) {
+        return authService.refreshToken(request);
     }
 
 }
